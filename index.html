@@ -7,8 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Supabase JS Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-900 text-slate-100 font-sinhala antialiased selection:bg-cyan-500 selection:text-white">
@@ -39,7 +37,6 @@
     <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-2xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
-                <!-- Brand Logo & Name -->
                 <a href="#" class="flex items-center gap-3 shrink-0 group">
                     <div class="relative w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-700 p-0.5 shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all">
                         <div class="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center relative overflow-hidden">
@@ -57,7 +54,6 @@
                     </div>
                 </a>
 
-                <!-- Desktop Navigation Menu -->
                 <div class="hidden xl:flex items-center space-x-7 font-poppins text-sm font-medium">
                     <a href="#services" class="text-slate-300 hover:text-cyan-400 transition-colors py-2 border-b-2 border-transparent hover:border-cyan-400">Services</a>
                     <a href="#why-us" class="text-slate-300 hover:text-cyan-400 transition-colors py-2 border-b-2 border-transparent hover:border-cyan-400">Why Us</a>
@@ -67,7 +63,6 @@
                     <a href="#contact" class="text-slate-300 hover:text-cyan-400 transition-colors py-2 border-b-2 border-transparent hover:border-cyan-400">Contact Us</a>
                 </div>
 
-                <!-- CTA Button -->
                 <div class="hidden xl:flex items-center shrink-0">
                     <a href="#booking" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-poppins text-xs font-bold uppercase tracking-wider px-5 py-3 rounded-xl shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
                         <i class="fa-regular fa-calendar-check text-sm"></i>
@@ -75,7 +70,6 @@
                     </a>
                 </div>
 
-                <!-- Mobile Menu Button -->
                 <div class="xl:hidden flex items-center">
                     <button id="mobile-menu-btn" class="p-2.5 rounded-xl bg-slate-800 text-slate-300 hover:text-white border border-slate-700 focus:outline-none">
                         <i class="fa-solid fa-bars text-xl"></i>
@@ -84,7 +78,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu Container -->
         <div id="mobile-menu" class="hidden xl:hidden bg-slate-900 border-b border-slate-800 px-6 pt-3 pb-6 space-y-3 font-poppins">
             <a href="#services" class="block text-slate-300 hover:text-cyan-400 font-medium py-2">Services</a>
             <a href="#why-us" class="block text-slate-300 hover:text-cyan-400 font-medium py-2">Why Us</a>
@@ -262,7 +255,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
                 <div class="bg-slate-950 rounded-2xl p-6 border border-slate-800 hover:border-cyan-500/50 transition-all group">
                     <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-soap"></i>
@@ -278,7 +270,6 @@
                     </ul>
                 </div>
 
-                <!-- Service Card 2 -->
                 <div class="bg-slate-950 rounded-2xl p-6 border border-slate-800 hover:border-cyan-500/50 transition-all group">
                     <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-flask"></i>
@@ -294,7 +285,6 @@
                     </ul>
                 </div>
 
-                <!-- Service Card 3 -->
                 <div class="bg-slate-950 rounded-2xl p-6 border border-slate-800 hover:border-cyan-500/50 transition-all group">
                     <div class="w-14 h-14 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-gas-pump"></i>
@@ -409,7 +399,7 @@
         </div>
     </section>
 
-    <!-- Booking Form Section (With Netlify & Supabase Integration) -->
+    <!-- Booking Form Section -->
     <section id="booking" class="py-20 bg-slate-900 border-t border-slate-800">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -417,22 +407,21 @@
                 <p class="text-3xl font-bold text-white">ඔබගේ සේවාව අදම වෙන්කරගන්න</p>
             </div>
 
-            <form id="booking-form" name="ac-booking" method="POST" data-netlify="true" class="bg-slate-950 p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-6">
-                <input type="hidden" name="form-name" value="ac-booking" />
-                
+            <!-- Note: Removed data-netlify="true" from form since JS handles prevention and WhatsApp redirect, preventing 404 error -->
+            <form id="booking-form" class="bg-slate-950 p-6 sm:p-8 rounded-2xl border border-slate-800 space-y-6">
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-2">ඔබගේ නම</label>
-                    <input type="text" id="cust-name" name="name" required placeholder="උදා: කමල් පෙරේරා" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                    <input type="text" id="cust-name" required placeholder="උදා: කමල් පෙරේරා" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                 </div>
 
                 <div class="grid sm:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-sm font-medium text-slate-300 mb-2">දුරකථන අංකය</label>
-                        <input type="tel" id="cust-phone" name="phone" required placeholder="0771234567" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                        <input type="tel" id="cust-phone" required placeholder="0771234567" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-slate-300 mb-2">අවශ්‍ය සේවාව / පැකේජය</label>
-                        <select id="cust-service" name="service" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500">
+                        <select id="cust-service" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500">
                             <option value="General Service (Rs. 3,500)">General Service (Rs. 3,500)</option>
                             <option value="Chemical Wash (Rs. 6,500)">Chemical Wash (Rs. 6,500)</option>
                             <option value="Full Overhaul (Rs. 9,500)">Full Overhaul (Rs. 9,500)</option>
@@ -444,7 +433,7 @@
 
                 <div>
                     <label class="block text-sm font-medium text-slate-300 mb-2">ලිපිනය / ප්‍රදේශය</label>
-                    <textarea id="cust-address" name="address" rows="3" placeholder="ඔබගේ ලිපිනය මෙහි සටහන් කරන්න" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500"></textarea>
+                    <textarea id="cust-address" rows="3" placeholder="ඔබගේ ලිපිනය මෙහි සටහන් කරන්න" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500"></textarea>
                 </div>
 
                 <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold py-4 rounded-xl shadow-lg shadow-cyan-500/25 transition-all text-center flex items-center justify-center gap-2">
