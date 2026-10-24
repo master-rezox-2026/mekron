@@ -1,8 +1,3 @@
-// --- SUPABASE CONFIGURATION ---
-// Paste your Supabase credentials below:
-const SUPABASE_URL = 'https://kgjkutouneodzngfsozb.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_KvTVMUSuUnu9s1dgqcsE3w_Q2KcjUiR';
-
 const mobileBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -37,15 +32,19 @@ if (calcBtn) {
     });
 }
 
-const bookingForm = document.getElementById('booking-form');
-if (bookingForm) {
-    bookingForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('cust-name').value;
-        const phone = document.getElementById('cust-phone').value;
+// Pure WhatsApp click handler (No form submission, no database, no 404 errors)
+const submitBtn = document.getElementById('whatsapp-submit-btn');
+if (submitBtn) {
+    submitBtn.addEventListener('click', () => {
+        const name = document.getElementById('cust-name').value.trim();
+        const phone = document.getElementById('cust-phone').value.trim();
         const service = document.getElementById('cust-service').value;
-        const address = document.getElementById('cust-address').value;
+        const address = document.getElementById('cust-address').value.trim();
+
+        if (!name || !phone) {
+            alert('කරුණාකර ඔබගේ නම සහ දුරකථන අංකය ඇතුළත් කරන්න.');
+            return;
+        }
 
         const message = `*Mekron Engineer - AC Service Booking*%0A%0A` +
                         `*නම:* ${encodeURIComponent(name)}%0A` +
