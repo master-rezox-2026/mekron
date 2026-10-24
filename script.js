@@ -3,13 +3,6 @@
 const SUPABASE_URL = 'https://kgjkutouneodzngfsozb.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_KvTVMUSuUnu9s1dgqcsE3w_Q2KcjUiR';
 
-let supabaseClient = null;
-
-if (typeof supabase !== 'undefined' && SUPABASE_URL !== 'YOUR_SUPABASE_PROJECT_URL') {
-    supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-}
-
-// Mobile Menu Toggle
 const mobileBtn = document.getElementById('mobile-menu-btn');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -19,7 +12,6 @@ if (mobileBtn && mobileMenu) {
     });
 }
 
-// BTU Calculator Logic
 const calcBtn = document.getElementById('calc-btn');
 if (calcBtn) {
     calcBtn.addEventListener('click', () => {
@@ -45,27 +37,16 @@ if (calcBtn) {
     });
 }
 
-// Booking Form Handling (Supabase & WhatsApp)
 const bookingForm = document.getElementById('booking-form');
 if (bookingForm) {
-    bookingForm.addEventListener('submit', async (e) => {
+    bookingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
         const name = document.getElementById('cust-name').value;
         const phone = document.getElementById('cust-phone').value;
         const service = document.getElementById('cust-service').value;
         const address = document.getElementById('cust-address').value;
 
-        // If Supabase is configured, insert booking row
-        if (supabaseClient) {
-            try {
-                await supabaseClient.from('bookings').insert([
-                    { name: name, phone: phone, service: service, address: address }
-                ]);
-            } catch (err) {
-                console.log('Supabase Insert Error:', err);
-            }
-        }
-
-        // WhatsApp Direct Dispatch
         const message = `*Mekron Engineer - AC Service Booking*%0A%0A` +
                         `*නම:* ${encodeURIComponent(name)}%0A` +
                         `*දුරකථන:* ${encodeURIComponent(phone)}%0A` +
