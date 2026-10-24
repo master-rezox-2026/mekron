@@ -1,7 +1,7 @@
 // --- SUPABASE CONFIGURATION ---
 // Paste your Supabase credentials below:
-const SUPABASE_URL = 'YOUR_SUPABASE_PROJECT_URL';
-const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://kgjkutouneodzngfsozb.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_KvTVMUSuUnu9s1dgqcsE3w_Q2KcjUiR';
 
 let supabaseClient = null;
 
