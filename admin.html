@@ -54,11 +54,11 @@
                         <button onclick="switchTab('hero')" id="tab-hero" class="w-full text-left px-3.5 py-2.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition-all">
                             <i class="fa-solid fa-heading text-slate-400"></i> Hero Section
                         </button>
+                        <button onclick="switchTab('services')" id="tab-services" class="w-full text-left px-3.5 py-2.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition-all">
+                            <i class="fa-solid fa-image text-slate-400"></i> Manage Services (New)
+                        </button>
                         <button onclick="switchTab('pricing')" id="tab-pricing" class="w-full text-left px-3.5 py-2.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition-all">
                             <i class="fa-solid fa-tags text-slate-400"></i> Package Prices
-                        </button>
-                        <button onclick="switchTab('services')" id="tab-services" class="w-full text-left px-3.5 py-2.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition-all">
-                            <i class="fa-solid fa-image text-slate-400"></i> Services & Images
                         </button>
                         <button onclick="switchTab('contact')" id="tab-contact" class="w-full text-left px-3.5 py-2.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition-all">
                             <i class="fa-solid fa-phone text-slate-400"></i> Contact & Numbers
@@ -76,18 +76,17 @@
                 <!-- Notification Alert -->
                 <div id="save-alert" class="hidden bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 p-4 rounded-xl text-sm flex items-center gap-3">
                     <i class="fa-solid fa-circle-check text-lg"></i>
-                    <span>වෙනස්කම් Supabase Database එකෙහි සාර්ථකව Save විය!</span>
+                    <span id="alert-msg">වෙනස්කම් Supabase Database එකෙහි සාර්ථකව Save විය!</span>
                 </div>
 
-                <form id="admin-form" class="space-y-6">
-                    
-                    <!-- TAB 1: Branding & Logo Settings -->
-                    <div id="sec-branding" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                <!-- TAB 1: Branding & Logo Settings -->
+                <div id="sec-branding" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <form id="form-branding" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
                             <h3 class="text-lg font-bold text-white flex items-center gap-2">
                                 <i class="fa-solid fa-signature text-cyan-400"></i> Brand, Logo & Header Settings
                             </h3>
-                            <p class="text-xs text-slate-400 mt-1">වෙබ් අඩවියේ නම සහ Logo එක (Icon හෝ Image එකක් ලෙස) වෙනස් කරන්න.</p>
+                            <p class="text-xs text-slate-400 mt-1">වෙබ් අඩවියේ නම සහ Logo එක වෙනස් කරන්න.</p>
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-6">
@@ -117,18 +116,26 @@
 
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Icon Class (Icon තෝරා ඇත්නම්)</label>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Icon Class</label>
                                 <input type="text" id="adm-logoIcon" placeholder="fa-solid fa-snowflake" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Image URL (Image තෝරා ඇත්නම්)</label>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Image URL</label>
                                 <input type="text" id="adm-logoImgUrl" placeholder="https://example.com/logo.png" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
-                    </div>
 
-                    <!-- TAB 2: Hero Section -->
-                    <div id="sec-hero" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                        <div class="flex justify-end pt-4 border-t border-slate-800">
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">
+                                Save Branding Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TAB 2: Hero Section -->
+                <div id="sec-hero" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <form id="form-hero" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
                             <h3 class="text-lg font-bold text-white flex items-center gap-2">
                                 <i class="fa-solid fa-heading text-cyan-400"></i> Hero Section & Background
@@ -155,10 +162,50 @@
                             <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Hero Background Image URL</label>
                             <input type="text" id="adm-heroBgUrl" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                         </div>
+
+                        <div class="flex justify-end pt-4 border-t border-slate-800">
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">
+                                Save Hero Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TAB 3: Manage Services (Add, Edit, Delete) -->
+                <div id="sec-services" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <div class="border-b border-slate-800 pb-4 flex items-center justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-image text-cyan-400"></i> Manage Services (ප්‍රධාන සේවාවන් එකතු කිරීම සහ ඉවත් කිරීම)
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">වෙබ් අඩවියේ පෙන්වන සේවාවන් මෙතැනින් අලුතින් එක් කළ හැක හෝ මකා දැමිය හැක.</p>
+                        </div>
+                        <button onclick="openAddServiceModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> නව සේවාවක් එක් කරන්න (Add New Service)
+                        </button>
                     </div>
 
-                    <!-- TAB 3: Pricing Packages -->
-                    <div id="sec-pricing" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <!-- Services Table List -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-slate-300">
+                            <thead class="bg-slate-950 text-xs uppercase text-slate-400 border-b border-slate-800">
+                                <tr>
+                                    <th class="p-3">රූපය (Image)</th>
+                                    <th class="p-3">සේවාවේ නම (Title)</th>
+                                    <th class="p-3">Badge</th>
+                                    <th class="p-3 text-right">ක්‍රියාමාර්ග (Actions)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-services-table-body" class="divide-y divide-slate-800">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 4: Pricing Packages -->
+                <div id="sec-pricing" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <form id="form-pricing" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
                             <h3 class="text-lg font-bold text-white flex items-center gap-2">
                                 <i class="fa-solid fa-tags text-cyan-400"></i> Package Pricing Settings
@@ -180,50 +227,18 @@
                                 <input type="text" id="adm-price3" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
-                    </div>
 
-                    <!-- TAB 4: Services & Images -->
-                    <div id="sec-services" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
-                        <div class="border-b border-slate-800 pb-4">
-                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                                <i class="fa-solid fa-image text-cyan-400"></i> Services Images & Details
-                            </h3>
-                            <p class="text-xs text-slate-400 mt-1">සේවා කාඩ්පත් වල පින්තූර (Image URLs) සහ විස්තර වෙනස් කරන්න.</p>
+                        <div class="flex justify-end pt-4 border-t border-slate-800">
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">
+                                Save Pricing Settings
+                            </button>
                         </div>
+                    </form>
+                </div>
 
-                        <!-- Service 1 -->
-                        <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-4">
-                            <h4 class="text-sm font-bold text-cyan-400">Service 1: General Servicing</h4>
-                            <div class="grid sm:grid-cols-2 gap-4">
-                                <input type="text" id="adm-srvTitle1" placeholder="Title" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
-                                <input type="text" id="adm-srvImg1" placeholder="Image URL" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
-                            </div>
-                            <textarea id="adm-srvDesc1" rows="2" placeholder="Description" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white"></textarea>
-                        </div>
-
-                        <!-- Service 2 -->
-                        <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-4">
-                            <h4 class="text-sm font-bold text-cyan-400">Service 2: Chemical Wash</h4>
-                            <div class="grid sm:grid-cols-2 gap-4">
-                                <input type="text" id="adm-srvTitle2" placeholder="Title" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
-                                <input type="text" id="adm-srvImg2" placeholder="Image URL" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
-                            </div>
-                            <textarea id="adm-srvDesc2" rows="2" placeholder="Description" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white"></textarea>
-                        </div>
-
-                        <!-- Service 3 -->
-                        <div class="p-4 bg-slate-950 rounded-xl border border-slate-800 space-y-4">
-                            <h4 class="text-sm font-bold text-cyan-400">Service 3: Gas Top-up & Leak Repair</h4>
-                            <div class="grid sm:grid-cols-2 gap-4">
-                                <input type="text" id="adm-srvTitle3" placeholder="Title" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
-                                <input type="text" id="adm-srvImg3" placeholder="Image URL" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white">
-                            </div>
-                            <textarea id="adm-srvDesc3" rows="2" placeholder="Description" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- TAB 5: Contact Numbers -->
-                    <div id="sec-contact" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                <!-- TAB 5: Contact Numbers -->
+                <div id="sec-contact" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <form id="form-contact" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
                             <h3 class="text-lg font-bold text-white flex items-center gap-2">
                                 <i class="fa-solid fa-phone text-cyan-400"></i> Contact & Phone Numbers
@@ -241,10 +256,18 @@
                                 <input type="text" id="adm-waNumber" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
-                    </div>
 
-                    <!-- TAB 6: Security & Credentials -->
-                    <div id="sec-security" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                        <div class="flex justify-end pt-4 border-t border-slate-800">
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">
+                                Save Contact Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- TAB 6: Security & Credentials -->
+                <div id="sec-security" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                    <form id="form-security" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
                             <h3 class="text-lg font-bold text-white flex items-center gap-2">
                                 <i class="fa-solid fa-shield-halved text-cyan-400"></i> Admin Credentials & Security
@@ -262,18 +285,47 @@
                                 <input type="password" id="adm-newPassword" placeholder="••••••••" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Action Buttons -->
-                    <div class="flex items-center justify-end gap-4 pt-4 border-t border-slate-800">
-                        <button type="submit" id="save-btn" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold px-8 py-3.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2 cursor-pointer">
-                            <i class="fa-solid fa-floppy-disk text-lg"></i>
-                            <span>Save to Supabase Database</span>
-                        </button>
-                    </div>
+                        <div class="flex justify-end pt-4 border-t border-slate-800">
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">
+                                Save Security Settings
+                            </button>
+                        </div>
+                    </form>
+                </div>
 
-                </form>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal for Adding/Editing Service -->
+    <div id="service-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl relative">
+            <h3 id="modal-title" class="text-xl font-bold text-white mb-6">නව සේවාවක් එක් කරන්න</h3>
+            <form id="service-form" class="space-y-4">
+                <input type="hidden" id="srv-edit-id">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">සේවාවේ නම (Title)</label>
+                    <input type="text" id="srv-title" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Badge (උදා: General, Deep Clean)</label>
+                    <input type="text" id="srv-badge" required value="Service" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">පින්තූරයේ URL (Image URL)</label>
+                    <input type="text" id="srv-img" required placeholder="https://..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">සේවා විස්තරය (Description)</label>
+                    <textarea id="srv-desc" rows="3" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500"></textarea>
+                </div>
+
+                <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+                    <button type="button" onclick="closeServiceModal()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold px-5 py-2.5 rounded-xl transition-all">අවලංගු කරන්න</button>
+                    <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-2.5 rounded-xl transition-all">Save Service</button>
+                </div>
+            </form>
         </div>
     </div>
 

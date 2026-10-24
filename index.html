@@ -193,8 +193,24 @@
         </div>
     </section>
 
+    <!-- Services Section (Moved right below Hero section, loaded dynamically from Supabase) -->
+    <section id="services" class="py-20 bg-slate-950 relative border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <h2 class="text-xs font-semibold uppercase tracking-widest text-cyan-400 mb-2">Our Services</h2>
+                <p class="text-3xl sm:text-4xl font-bold text-white mb-4">අප ලබාදෙන ප්‍රධාන AC සේවාවන්</p>
+                <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Dynamic Services Container -->
+            <div id="services-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Javascript will populate services here dynamically -->
+            </div>
+        </div>
+    </section>
+
     <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-slate-950 border-t border-slate-800">
+    <section id="pricing" class="py-20 bg-slate-900 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
                 <h2 class="text-xs font-semibold uppercase tracking-widest text-cyan-400 mb-2">Packages & Pricing</h2>
@@ -204,7 +220,7 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Plan 1 -->
-                <div class="bg-slate-900 rounded-2xl p-8 border border-slate-800 flex flex-col justify-between hover:border-cyan-500/50 transition-all hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-slate-950 rounded-2xl p-8 border border-slate-800 flex flex-col justify-between hover:border-cyan-500/50 transition-all hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
                     <div>
                         <h3 class="text-xl font-bold text-white mb-2">Basic Service</h3>
                         <p id="price-plan-1" class="text-3xl font-bold text-cyan-400 font-poppins mb-6">Rs. 3,500</p>
@@ -214,13 +230,13 @@
                             <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Gas Level Check</li>
                         </ul>
                     </div>
-                    <button onclick="selectPackage('General Service')" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-xl text-center transition-colors">
+                    <button onclick="selectPackage('General Service')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 rounded-xl text-center transition-colors">
                         තෝරාගන්න
                     </button>
                 </div>
 
                 <!-- Plan 2 -->
-                <div class="bg-slate-900 rounded-2xl p-8 border-2 border-cyan-500 flex flex-col justify-between relative shadow-xl shadow-cyan-500/10 hover:-translate-y-1 transition-all" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-slate-950 rounded-2xl p-8 border-2 border-cyan-500 flex flex-col justify-between relative shadow-xl shadow-cyan-500/10 hover:-translate-y-1 transition-all" data-aos="fade-up" data-aos-delay="200">
                     <span class="absolute -top-3.5 right-6 bg-cyan-500 text-slate-950 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider shadow-md">Popular</span>
                     <div>
                         <h3 class="text-xl font-bold text-white mb-2">Chemical Service</h3>
@@ -238,7 +254,7 @@
                 </div>
 
                 <!-- Plan 3 -->
-                <div class="bg-slate-900 rounded-2xl p-8 border border-slate-800 flex flex-col justify-between hover:border-cyan-500/50 transition-all hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-slate-950 rounded-2xl p-8 border border-slate-800 flex flex-col justify-between hover:border-cyan-500/50 transition-all hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
                     <div>
                         <h3 class="text-xl font-bold text-white mb-2">Full Overhaul</h3>
                         <p id="price-plan-3" class="text-3xl font-bold text-cyan-400 font-poppins mb-6">Rs. 9,500</p>
@@ -248,82 +264,9 @@
                             <li><i class="fa-solid fa-check text-cyan-400 mr-2"></i> Electrical Checkup</li>
                         </ul>
                     </div>
-                    <button onclick="selectPackage('Full Overhaul')" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3 rounded-xl text-center transition-colors">
+                    <button onclick="selectPackage('Full Overhaul')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-3 rounded-xl text-center transition-colors">
                         තෝරාගන්න
                     </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-20 bg-slate-900 relative border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
-                <h2 class="text-xs font-semibold uppercase tracking-widest text-cyan-400 mb-2">Our Services</h2>
-                <p class="text-3xl sm:text-4xl font-bold text-white mb-4">අප ලබාදෙන ප්‍රධාන AC සේවාවන්</p>
-                <div class="w-20 h-1 bg-cyan-500 mx-auto rounded-full"></div>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all group hover:-translate-y-1 shadow-xl" data-aos="fade-up" data-aos-delay="100">
-                    <div class="relative h-48 overflow-hidden">
-                        <img id="service-img-1" src="https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=800&auto=format&fit=crop" alt="General AC Servicing" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                        <span class="absolute top-3 left-3 bg-cyan-500/80 backdrop-blur-md text-slate-950 text-xs font-bold px-2.5 py-1 rounded-md">General</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 id="service-title-1" class="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">General AC Servicing</h3>
-                        <p id="service-desc-1" class="text-slate-400 text-sm leading-relaxed mb-4">
-                            A/C යන්ත්‍රයේ ෆිල්ටර්, කොයිල් සහ බ්ලෝවර් පිරිසිදු කර ධාරිතාව උපරිම මට්ටමට ගෙන ඒම.
-                        </p>
-                        <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800/80 pt-4">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Air Filter Cleaning</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Evaporator Coil Wash</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Performance Inspection</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all group hover:-translate-y-1 shadow-xl" data-aos="fade-up" data-aos-delay="200">
-                    <div class="relative h-48 overflow-hidden">
-                        <img id="service-img-2" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop" alt="Chemical Wash" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                        <span class="absolute top-3 left-3 bg-cyan-500/80 backdrop-blur-md text-slate-950 text-xs font-bold px-2.5 py-1 rounded-md">Deep Clean</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 id="service-title-2" class="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Chemical Wash</h3>
-                        <p id="service-desc-2" class="text-slate-400 text-sm leading-relaxed mb-4">
-                            තදින් තැන්පත් වූ දූවිලි හා පාසි ඉවත් කර සම්පූර්ණ කෙමිකල් ක්ලීනින් සේවාව.
-                        </p>
-                        <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800/80 pt-4">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Deep Chemical Flushing</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Odor Removal & Sterilization</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Water Leak Repair</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="bg-slate-950 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all group hover:-translate-y-1 shadow-xl" data-aos="fade-up" data-aos-delay="300">
-                    <div class="relative h-48 overflow-hidden">
-                        <img id="service-img-3" src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop" alt="Gas Refill & Repair" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent"></div>
-                        <span class="absolute top-3 left-3 bg-cyan-500/80 backdrop-blur-md text-slate-950 text-xs font-bold px-2.5 py-1 rounded-md">Gas & Repair</span>
-                    </div>
-                    <div class="p-6">
-                        <h3 id="service-title-3" class="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">Gas Top-up & Leak Repair</h3>
-                        <p id="service-desc-3" class="text-slate-400 text-sm leading-relaxed mb-4">
-                            R22, R32, R410A ගෑස් වර්ග පරීක්ෂා කර කාන්දුවීම් අලුත්වැඩියා කර ගෑස් නැවත පිරවීම.
-                        </p>
-                        <ul class="text-xs text-slate-300 space-y-2 mb-6 border-t border-slate-800/80 pt-4">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Gas Pressure Testing</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Leak Detection & Sealing</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-cyan-400"></i> Eco-Friendly Gas Charging</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
