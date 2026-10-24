@@ -32,26 +32,39 @@ if (calcBtn) {
     });
 }
 
-// Pure WhatsApp click handler (No form submission, no database, no 404 errors)
-const submitBtn = document.getElementById('whatsapp-submit-btn');
-if (submitBtn) {
-    submitBtn.addEventListener('click', () => {
-        const name = document.getElementById('cust-name').value.trim();
-        const phone = document.getElementById('cust-phone').value.trim();
-        const service = document.getElementById('cust-service').value;
-        const address = document.getElementById('cust-address').value.trim();
+const waLink = document.getElementById('whatsapp-link');
+const nameInput = document.getElementById('cust-name');
+const phoneInput = document.getElementById('cust-phone');
+const serviceSelect = document.getElementById('cust-service');
+const addressInput = document.getElementById('cust-address');
 
-        if (!name || !phone) {
-            alert('කරුණාකර ඔබගේ නම සහ දුරකථන අංකය ඇතුළත් කරන්න.');
-            return;
-        }
+function updateWhatsAppLink() {
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    const service = serviceSelect.value;
+    const address = addressInput.value.trim();
 
-        const message = `*Mekron Engineer - AC Service Booking*%0A%0A` +
-                        `*නම:* ${encodeURIComponent(name)}%0A` +
-                        `*දුරකථන:* ${encodeURIComponent(phone)}%0A` +
-                        `*සේවාව:* ${encodeURIComponent(service)}%0A` +
-                        `*ලිපිනය:* ${encodeURIComponent(address)}`;
+    const message = `*Mekron Engineer - AC Service Booking*%0A%0A` +
+                    `*නම:* ${encodeURIComponent(name)}%0A` +
+                    `*දුරකථන:* ${encodeURIComponent(phone)}%0A` +
+                    `*සේවාව:* ${encodeURIComponent(service)}%0A` +
+                    `*ලිපිනය:* ${encodeURIComponent(address)}`;
 
-        window.open(`https://wa.me/94771234567?text=${message}`, '_blank');
-    });
+    waLink.href = `https://wa.me/94771234567?text=${message}`;
 }
+
+[nameInput, phoneInput, serviceSelect, addressInput].forEach(element => {
+    element.addEventListener('input', updateWhatsAppLink);
+    element.addEventListener('change', updateWhatsAppLink);
+});
+
+updateWhatsAppLink();
+
+waLink.addEventListener('click', (e) => {
+    const name = nameInput.value.trim();
+    const phone = phoneInput.value.trim();
+    if (!name || !phone) {
+        e.preventDefault();
+        alert('කරුණාකර ඔබගේ නම සහ දුරකථන අංකය ඇතුළත් කරන්න.');
+    }
+});
