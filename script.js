@@ -27,8 +27,19 @@ async function loadSiteConfigFromSupabase() {
             }
 
             if (document.getElementById('hero-badge')) document.getElementById('hero-badge').innerText = settings.hero_badge;
-            if (document.getElementById('hero-heading')) document.getElementById('hero-heading').innerText = settings.hero_heading;
-            if (document.getElementById('hero-subtext')) document.getElementById('hero-subtext').innerText = settings.hero_subtext;
+
+            if (document.getElementById('hero-heading')) {
+                let headingText = settings.hero_heading || '';
+                if (headingText.includes('නිවැරදිව හා විශ්වාසනීයව')) {
+                    headingText = headingText.replace(
+                    'නිවැරදිව හා විශ්වාසනීයව', 
+                    '<span class="text-cyan-400">නිවැරදිව හා විශ්වාසනීයව</span>'
+                );
+            }
+            document.getElementById('hero-heading').innerHTML = headingText;
+        }
+
+        if (document.getElementById('hero-subtext')) document.getElementById('hero-subtext').innerText = settings.hero_subtext; 
 
             if (document.getElementById('hero-bg')) {
                 document.getElementById('hero-bg').style.backgroundImage = `url('${settings.hero_bg_url}')`;
