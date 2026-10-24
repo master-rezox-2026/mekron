@@ -11,3 +11,14 @@ body {
 html { 
     scroll-behavior: smooth; 
 }
+
+@font-face {
+    font-family: 'Sinhala Sangam MN';
+    src: url('SinhalaSangamMN.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Sinhala Sangam MN', sans-serif;
+}
