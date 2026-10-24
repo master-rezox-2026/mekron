@@ -1,58 +1,53 @@
-const defaultConfig = {
-    brandName: "MEKRON",
-    brandTagline: "ENGINEERING",
-    logoIcon: "fa-solid fa-snowflake",
-    topNotice: "පැය 24 පුරාම හදිසි සේවාව (24/7 Service)",
-    phoneDisplay: "077 123 4567",
-    waNumber: "94771234567",
-    heroBadge: "#1 ISO ප්‍රමිතියෙන් යුත් AC සේවා ආයතනය",
-    heroHeading: "ඔබගේ AC යන්ත්‍රය නිවැරදිව හා විශ්වාසනීයව Service කරගන්න",
-    heroSubtext: "ඔබේ නිවසේ හෝ කාර්යාලයේ A/C යන්ත්‍රයේ ඕනෑම දෝෂයක් ඉක්මනින්, සාධාරණ මිලකට සහ ඉහළම ප්‍රමිතියෙන් අලුත්වැඩියා කරගැනීමට අදම අප හා සම්බන්ධ වන්න.",
-    heroBgUrl: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=2069&auto=format&fit=crop",
-    price1: "Rs. 3,500",
-    price2: "Rs. 6,500",
-    price3: "Rs. 9,500",
-    srvTitle1: "General AC Servicing",
-    srvDesc1: "A/C යන්ත්‍රයේ ෆිල්ටර්, කොයිල් සහ බ්ලෝවර් පිරිසිදු කර ධාරිතාව උපරිම මට්ටමට ගෙන ඒම.",
-    srvImg1: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?q=80&w=800&auto=format&fit=crop",
-    srvTitle2: "Chemical Wash",
-    srvDesc2: "තදින් තැන්පත් වූ දූවිලි හා පාසි ඉවත් කර සම්පූර්ණ කෙමිකල් ක්ලීනින් සේවාව.",
-    srvImg2: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop",
-    srvTitle3: "Gas Top-up & Leak Repair",
-    srvDesc3: "R22, R32, R410A ගෑස් වර්ග පරීක්ෂා කර කාන්දුවීම් අලුත්වැඩියා කර ගෑස් නැවත පිරවීම.",
-    srvImg3: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=800&auto=format&fit=crop"
-};
+async function populateAdminForm() {
+    try {
+        const { data, error } = await _supabase
+            .from('site_settings')
+            .select('*')
+            .eq('id', 1)
+            .single();
 
-function populateAdminForm() {
-    const saved = localStorage.getItem('mekron_site_config');
-    const config = saved ? JSON.parse(saved) : defaultConfig;
+        if (error) {
+            console.error('Error fetching for admin:', error);
+            return;
+        }
 
-    document.getElementById('adm-brandName').value = config.brandName;
-    document.getElementById('adm-brandTagline').value = config.brandTagline;
-    document.getElementById('adm-logoIcon').value = config.logoIcon;
-    document.getElementById('adm-topNotice').value = config.topNotice;
-    document.getElementById('adm-phoneDisplay').value = config.phoneDisplay;
-    document.getElementById('adm-waNumber').value = config.waNumber;
-    document.getElementById('adm-heroBadge').value = config.heroBadge;
-    document.getElementById('adm-heroHeading').value = config.heroHeading;
-    document.getElementById('adm-heroSubtext').value = config.heroSubtext;
-    document.getElementById('adm-heroBgUrl').value = config.heroBgUrl;
-    document.getElementById('adm-price1').value = config.price1;
-    document.getElementById('adm-price2').value = config.price2;
-    document.getElementById('adm-price3').value = config.price3;
-    document.getElementById('adm-srvTitle1').value = config.srvTitle1;
-    document.getElementById('adm-srvDesc1').value = config.srvDesc1;
-    document.getElementById('adm-srvImg1').value = config.srvImg1;
-    document.getElementById('adm-srvTitle2').value = config.srvTitle2;
-    document.getElementById('adm-srvDesc2').value = config.srvDesc2;
-    document.getElementById('adm-srvImg2').value = config.srvImg2;
-    document.getElementById('adm-srvTitle3').value = config.srvTitle3;
-    document.getElementById('adm-srvDesc3').value = config.srvDesc3;
-    document.getElementById('adm-srvImg3').value = config.srvImg3;
+        if (data) {
+            document.getElementById('adm-brandName').value = data.brand_name || '';
+            document.getElementById('adm-brandTagline').value = data.brand_tagline || '';
+            document.getElementById('adm-logoIcon').value = data.logo_icon || '';
+            document.getElementById('adm-topNotice').value = data.top_notice || '';
+            document.getElementById('adm-phoneDisplay').value = data.phone_display || '';
+            document.getElementById('adm-waNumber').value = data.wa_number || '';
+            document.getElementById('adm-heroBadge').value = data.hero_badge || '';
+            document.getElementById('adm-heroHeading').value = data.hero_heading || '';
+            document.getElementById('adm-heroSubtext').value = data.hero_subtext || '';
+            document.getElementById('adm-heroBgUrl').value = data.hero_bg_url || '';
+            document.getElementById('adm-price1').value = data.price1 || '';
+            document.getElementById('adm-price2').value = data.price2 || '';
+            document.getElementById('adm-price3').value = data.price3 || '';
+            document.getElementById('adm-srvTitle1').value = data.srv_title1 || '';
+            document.getElementById('adm-srvDesc1').value = data.srv_desc1 || '';
+            document.getElementById('adm-srvImg1').value = data.srv_img1 || '';
+            document.getElementById('adm-srvTitle2').value = data.srv_title2 || '';
+            document.getElementById('adm-srvDesc2').value = data.srv_desc2 || '';
+            document.getElementById('adm-srvImg2').value = data.srv_img2 || '';
+            document.getElementById('adm-srvTitle3').value = data.srv_title3 || '';
+            document.getElementById('adm-srvDesc3').value = data.srv_desc3 || '';
+            document.getElementById('adm-srvImg3').value = data.srv_img3 || '';
+        }
+
+        const credsStored = localStorage.getItem('mekron_admin_creds');
+        const creds = credsStored ? JSON.parse(credsStored) : { username: "admin", password: "admin123" };
+        document.getElementById('adm-newUsername').value = creds.username;
+        document.getElementById('adm-newPassword').value = creds.password;
+
+    } catch (err) {
+        console.error('Error loading admin form:', err);
+    }
 }
 
 function switchTab(tabKey) {
-    const tabs = ['branding', 'hero', 'pricing', 'services', 'contact'];
+    const tabs = ['branding', 'hero', 'pricing', 'services', 'contact', 'security'];
     tabs.forEach(t => {
         const btn = document.getElementById(`tab-${t}`);
         const sec = document.getElementById(`sec-${t}`);
@@ -66,35 +61,54 @@ function switchTab(tabKey) {
     });
 }
 
-document.getElementById('admin-form').addEventListener('submit', (e) => {
+document.getElementById('admin-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+    const saveBtn = document.getElementById('save-btn');
+    saveBtn.innerText = "Saving to Supabase...";
 
-    const config = {
-        brandName: document.getElementById('adm-brandName').value,
-        brandTagline: document.getElementById('adm-brandTagline').value,
-        logoIcon: document.getElementById('adm-logoIcon').value,
-        topNotice: document.getElementById('adm-topNotice').value,
-        phoneDisplay: document.getElementById('adm-phoneDisplay').value,
-        waNumber: document.getElementById('adm-waNumber').value,
-        heroBadge: document.getElementById('adm-heroBadge').value,
-        heroHeading: document.getElementById('adm-heroHeading').value,
-        heroSubtext: document.getElementById('adm-heroSubtext').value,
-        heroBgUrl: document.getElementById('adm-heroBgUrl').value,
+    const updatedData = {
+        brand_name: document.getElementById('adm-brandName').value,
+        brand_tagline: document.getElementById('adm-brandTagline').value,
+        logo_icon: document.getElementById('adm-logoIcon').value,
+        top_notice: document.getElementById('adm-topNotice').value,
+        phone_display: document.getElementById('adm-phoneDisplay').value,
+        wa_number: document.getElementById('adm-waNumber').value,
+        hero_badge: document.getElementById('adm-heroBadge').value,
+        hero_heading: document.getElementById('adm-heroHeading').value,
+        hero_subtext: document.getElementById('adm-heroSubtext').value,
+        hero_bg_url: document.getElementById('adm-heroBgUrl').value,
         price1: document.getElementById('adm-price1').value,
         price2: document.getElementById('adm-price2').value,
         price3: document.getElementById('adm-price3').value,
-        srvTitle1: document.getElementById('adm-srvTitle1').value,
-        srvDesc1: document.getElementById('adm-srvDesc1').value,
-        srvImg1: document.getElementById('adm-srvImg1').value,
-        srvTitle2: document.getElementById('adm-srvTitle2').value,
-        srvDesc2: document.getElementById('adm-srvDesc2').value,
-        srvImg2: document.getElementById('adm-srvImg2').value,
-        srvTitle3: document.getElementById('adm-srvTitle3').value,
-        srvDesc3: document.getElementById('adm-srvDesc3').value,
-        srvImg3: document.getElementById('adm-srvImg3').value
+        srv_title1: document.getElementById('adm-srvTitle1').value,
+        srv_desc1: document.getElementById('adm-srvDesc1').value,
+        srv_img1: document.getElementById('adm-srvImg1').value,
+        srv_title2: document.getElementById('adm-srvTitle2').value,
+        srv_desc2: document.getElementById('adm-srvDesc2').value,
+        srv_img2: document.getElementById('adm-srvImg2').value,
+        srv_title3: document.getElementById('adm-srvTitle3').value,
+        srv_desc3: document.getElementById('adm-srvDesc3').value,
+        srv_img3: document.getElementById('adm-srvImg3').value
     };
 
-    localStorage.setItem('mekron_site_config', JSON.stringify(config));
+    const { error } = await _supabase
+        .from('site_settings')
+        .update(updatedData)
+        .eq('id', 1);
+
+    saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk text-lg"></i><span>Save to Supabase Database</span>';
+
+    if (error) {
+        alert('Save කිරීමටදී දෝෂයක් සිදු විය: ' + error.message);
+        return;
+    }
+
+    // Save admin credentials
+    const newU = document.getElementById('adm-newUsername').value.trim();
+    const newP = document.getElementById('adm-newPassword').value.trim();
+    if (newU && newP) {
+        localStorage.setItem('mekron_admin_creds', JSON.stringify({ username: newU, password: newP }));
+    }
 
     const alertBox = document.getElementById('save-alert');
     alertBox.classList.remove('hidden');
@@ -103,14 +117,6 @@ document.getElementById('admin-form').addEventListener('submit', (e) => {
     setTimeout(() => {
         alertBox.classList.add('hidden');
     }, 4000);
-});
-
-document.getElementById('reset-btn').addEventListener('click', () => {
-    if (confirm('ඔබට සියලුම තොරතුරු මුල් පැවති තත්ත්වයට (Default) පත් කිරීමට අවශ්‍යද?')) {
-        localStorage.removeItem('mekron_site_config');
-        populateAdminForm();
-        alert('Reset කරන ලදී!');
-    }
 });
 
 document.addEventListener('DOMContentLoaded', () => {

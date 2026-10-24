@@ -8,6 +8,12 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+    <script>
+        checkAuth();
+    </script>
 </head>
 <body class="bg-slate-950 text-slate-100 font-sinhala antialiased">
 
@@ -19,16 +25,16 @@
                     <i class="fa-solid fa-sliders text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="font-poppins font-bold text-white text-base leading-tight">Website Control Center</h1>
-                    <p class="text-[11px] text-cyan-400">Live Website Customizer & Content Manager</p>
+                    <h1 class="font-poppins font-bold text-white text-base leading-tight">Website Control Center (Supabase Realtime)</h1>
+                    <p class="text-[11px] text-cyan-400">Protected Admin Portal</p>
                 </div>
             </div>
             <div class="flex items-center gap-3">
-                <a href="index.html" target="_blank" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs px-4 py-2 rounded-lg transition-all flex items-center gap-2">
-                    <i class="fa-solid fa-globe"></i> View Live Site
+                <a href="index.html" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-slate-300 font-poppins text-xs px-3.5 py-2 rounded-lg border border-slate-700 transition-all flex items-center gap-1.5">
+                    <i class="fa-solid fa-globe"></i> View Site
                 </a>
-                <button id="reset-btn" class="bg-slate-800 hover:bg-red-500/20 text-red-400 hover:text-red-300 border border-slate-700 text-xs px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5">
-                    <i class="fa-solid fa-rotate-left"></i> Reset Defaults
+                <button id="logout-btn" onclick="logoutAdmin()" class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 text-xs px-3.5 py-2 rounded-lg transition-all flex items-center gap-1.5 cursor-pointer">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
                 </button>
             </div>
         </div>
@@ -57,6 +63,9 @@
                         <button onclick="switchTab('contact')" id="tab-contact" class="w-full text-left px-3.5 py-2.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition-all">
                             <i class="fa-solid fa-phone text-slate-400"></i> Contact & Numbers
                         </button>
+                        <button onclick="switchTab('security')" id="tab-security" class="w-full text-left px-3.5 py-2.5 rounded-lg font-medium text-slate-400 hover:text-white hover:bg-slate-800 flex items-center gap-2.5 transition-all">
+                            <i class="fa-solid fa-shield-halved text-slate-400"></i> Login & Security
+                        </button>
                     </nav>
                 </div>
             </div>
@@ -67,7 +76,7 @@
                 <!-- Notification Alert -->
                 <div id="save-alert" class="hidden bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 p-4 rounded-xl text-sm flex items-center gap-3">
                     <i class="fa-solid fa-circle-check text-lg"></i>
-                    <span>ඔබගේ වෙනස්කම් සාර්ථකව Save විය! (Changes saved successfully to LocalStorage)</span>
+                    <span id="alert-text">වෙනස්කම් Supabase Database එකෙහි සාර්ථකව Save විය! හැමෝගෙම සයිට් එකේ දැන් වෙනස් වී ඇත.</span>
                 </div>
 
                 <form id="admin-form" class="space-y-6">
@@ -96,7 +105,6 @@
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">FontAwesome Logo Icon Class</label>
                                 <input type="text" id="adm-logoIcon" placeholder="fa-solid fa-snowflake" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
-                                <p class="text-[11px] text-slate-500 mt-1">උදාහරණ: fa-solid fa-snowflake, fa-solid fa-fan, fa-solid fa-gear</p>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Top Bar Announcement Text</label>
@@ -221,11 +229,32 @@
                         </div>
                     </div>
 
+                    <!-- TAB 6: Security & Credentials -->
+                    <div id="sec-security" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+                        <div class="border-b border-slate-800 pb-4">
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-shield-halved text-cyan-400"></i> Admin Credentials & Security
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">ඔබගේ Admin Login Username සහ Password මෙතැනින් වෙනස් කරන්න.</p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">New Username</label>
+                                <input type="text" id="adm-newUsername" placeholder="admin" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">New Password</label>
+                                <input type="password" id="adm-newPassword" placeholder="••••••••" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Action Buttons -->
                     <div class="flex items-center justify-end gap-4 pt-4 border-t border-slate-800">
-                        <button type="submit" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold px-8 py-3.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2 cursor-pointer">
+                        <button type="submit" id="save-btn" class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-extrabold px-8 py-3.5 rounded-xl shadow-lg shadow-cyan-500/25 transition-all flex items-center gap-2 cursor-pointer">
                             <i class="fa-solid fa-floppy-disk text-lg"></i>
-                            <span>Save Changes</span>
+                            <span>Save to Supabase Database</span>
                         </button>
                     </div>
 
