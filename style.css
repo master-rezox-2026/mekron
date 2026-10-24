@@ -1,24 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&family=Noto+Sans+Tamil:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-body { 
-    font-family: 'Poppins', 'Noto Sans Sinhala', 'Noto Sans Tamil', sans-serif; 
-}
-
-.font-poppins { 
-    font-family: 'Poppins', sans-serif; 
-}
-
-html { 
-    scroll-behavior: smooth; 
-}
-
-@font-face {
-    font-family: 'Sinhala Sangam MN';
-    src: url('SinhalaSangamMN.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-body {
-    font-family: 'Sinhala Sangam MN', sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+body { font-family: 'Noto Sans Sinhala', 'Poppins', sans-serif; }
+.font-poppins { font-family: 'Poppins', sans-serif; }
+html { scroll-behavior: smooth; }

@@ -7,9 +7,11 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- CropperJS CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" />
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- CropperJS JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
     <script src="config.js"></script>
     <script src="auth.js"></script>
@@ -19,6 +21,7 @@
 </head>
 <body class="bg-slate-950 text-slate-100 font-sinhala antialiased">
 
+    <!-- Admin Header -->
     <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center gap-3">
@@ -27,7 +30,7 @@
                 </div>
                 <div>
                     <h1 class="font-poppins font-bold text-white text-base leading-tight">Website Control Center</h1>
-                    <p class="text-[11px] text-cyan-400">Multilingual & Supabase Connected Admin</p>
+                    <p class="text-[11px] text-cyan-400">Supabase Connected Admin Portal</p>
                 </div>
             </div>
             <div class="flex items-center gap-3">
@@ -44,6 +47,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid lg:grid-cols-12 gap-8">
             
+            <!-- Admin Navigation Sidebar -->
             <div class="lg:col-span-3 space-y-2">
                 <div class="bg-slate-900 rounded-xl p-4 border border-slate-800 sticky top-24">
                     <h2 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 px-2">Settings Menu</h2>
@@ -70,56 +74,68 @@
                 </div>
             </div>
 
+            <!-- Content Area -->
             <div class="lg:col-span-9 space-y-6">
+                
+                <!-- Notification Alert -->
                 <div id="save-alert" class="hidden bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 p-4 rounded-xl text-sm flex items-center gap-3">
                     <i class="fa-solid fa-circle-check text-lg"></i>
                     <span id="alert-msg">වෙනස්කම් සාර්ථකව Save විය!</span>
                 </div>
 
-                <!-- TAB 1: Branding -->
+                <!-- TAB 1: Branding & Logo Settings -->
                 <div id="sec-branding" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
                     <form id="form-branding" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
-                            <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fa-solid fa-signature text-cyan-400"></i> Brand, Logo & Header Settings</h3>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-signature text-cyan-400"></i> Brand, Logo & Header Settings
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">වෙබ් අඩවියේ නම සහ Logo එක වෙනස් කරන්න.</p>
                         </div>
+
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Website Main Name (Brand)</label>
-                                <input type="text" id="adm-brandName" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-brandName" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Brand Tagline / Subtitle</label>
-                                <input type="text" id="adm-brandTagline" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-brandTagline" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
+
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Type</label>
-                                <select id="adm-logoType" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
-                                    <option value="icon">FontAwesome Icon</option>
-                                    <option value="image">Image Logo</option>
+                                <select id="adm-logoType" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                                    <option value="icon">FontAwesome Icon එකක් පාවිච්චි කරන්න</option>
+                                    <option value="image">පින්තූරයක් පාවිච්චි කරන්න</option>
                                 </select>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Top Bar Announcement Text</label>
-                                <input type="text" id="adm-topNotice" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-topNotice" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
+
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Icon Class</label>
-                                <input type="text" id="adm-logoIcon" placeholder="fa-solid fa-snowflake" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-logoIcon" placeholder="fa-solid fa-snowflake" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Image (URL / Crop)</label>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Image (URL හෝ Upload කර Crop කරන්න)</label>
                                 <div class="flex gap-2">
-                                    <input type="text" id="adm-logoImgUrl" placeholder="Image URL" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-xs">
-                                    <button type="button" onclick="openImageCropper('adm-logoImgUrl')" class="bg-slate-800 text-cyan-400 px-4 py-2 rounded-xl text-xs shrink-0 border border-slate-700"><i class="fa-solid fa-upload mr-1"></i> Upload & Crop</button>
+                                    <input type="text" id="adm-logoImgUrl" placeholder="Image URL හෝ Upload කළ පසු පිරවේ" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-xs focus:outline-none focus:border-cyan-500">
+                                    <button type="button" onclick="openImageCropper('adm-logoImgUrl')" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-4 py-2 rounded-xl text-xs border border-slate-700 shrink-0"><i class="fa-solid fa-upload mr-1"></i> Upload & Crop</button>
                                 </div>
                             </div>
                         </div>
+
                         <div class="flex justify-end pt-4 border-t border-slate-800">
-                            <button type="submit" class="bg-cyan-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Save Branding</button>
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">
+                                Save Branding Settings
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -128,29 +144,39 @@
                 <div id="sec-hero" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
                     <form id="form-hero" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
-                            <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fa-solid fa-heading text-cyan-400"></i> Hero Section & Background</h3>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-heading text-cyan-400"></i> Hero Section & Background
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">ප්‍රධාන මුල් පිටුවේ (Hero Banner) ඇති මාතෘකා සහ පසුබිම් රූපය වෙනස් කරන්න.</p>
                         </div>
+
                         <div>
                             <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Badge Tagline</label>
-                            <input type="text" id="adm-heroBadge" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                            <input type="text" id="adm-heroBadge" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                         </div>
+
                         <div>
                             <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Main Hero Heading</label>
-                            <input type="text" id="adm-heroHeading" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                            <input type="text" id="adm-heroHeading" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                         </div>
+
                         <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Main Hero Subtext</label>
-                            <textarea id="adm-heroSubtext" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white"></textarea>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Main Hero Subtext / Description</label>
+                            <textarea id="adm-heroSubtext" rows="3" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500"></textarea>
                         </div>
+
                         <div>
-                            <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Hero Background Image</label>
+                            <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Hero Background Image (URL හෝ Upload කර Crop කරන්න)</label>
                             <div class="flex gap-2">
-                                <input type="text" id="adm-heroBgUrl" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-xs">
-                                <button type="button" onclick="openImageCropper('adm-heroBgUrl')" class="bg-slate-800 text-cyan-400 px-4 py-2 rounded-xl text-xs shrink-0 border border-slate-700"><i class="fa-solid fa-upload mr-1"></i> Upload & Crop</button>
+                                <input type="text" id="adm-heroBgUrl" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-xs focus:outline-none focus:border-cyan-500">
+                                <button type="button" onclick="openImageCropper('adm-heroBgUrl')" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-4 py-2 rounded-xl text-xs border border-slate-700 shrink-0"><i class="fa-solid fa-upload mr-1"></i> Upload & Crop</button>
                             </div>
                         </div>
+
                         <div class="flex justify-end pt-4 border-t border-slate-800">
-                            <button type="submit" class="bg-cyan-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Save Hero Settings</button>
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">
+                                Save Hero Settings
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -159,10 +185,13 @@
                 <div id="sec-services" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
                     <div class="border-b border-slate-800 pb-4 flex items-center justify-between">
                         <div>
-                            <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fa-solid fa-image text-cyan-400"></i> Manage Services (Multi-Language)</h3>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-image text-cyan-400"></i> Manage Services
+                            </h3>
+                            <p class="text-xs text-slate-400 mt-1">සේවාවන් අලුතින් එක් කරන්න, Edit කරන්න හෝ මකා දමන්න.</p>
                         </div>
-                        <button onclick="openAddServiceModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl flex items-center gap-2">
-                            <i class="fa-solid fa-plus"></i> Add New Service
+                        <button onclick="openAddServiceModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold text-xs px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i> නව සේවාවක් එක් කරන්න
                         </button>
                     </div>
 
@@ -170,10 +199,10 @@
                         <table class="w-full text-left text-sm text-slate-300">
                             <thead class="bg-slate-950 text-xs uppercase text-slate-400 border-b border-slate-800">
                                 <tr>
-                                    <th class="p-3">Image</th>
-                                    <th class="p-3">Title (English)</th>
-                                    <th class="p-3">Title (Sinhala / Tamil)</th>
-                                    <th class="p-3 text-right">Actions</th>
+                                    <th class="p-3">රූපය (Image)</th>
+                                    <th class="p-3">සේවාවේ නම</th>
+                                    <th class="p-3">Badge</th>
+                                    <th class="p-3 text-right">ක්‍රියාමාර්ග</th>
                                 </tr>
                             </thead>
                             <tbody id="admin-services-table-body" class="divide-y divide-slate-800">
@@ -187,24 +216,26 @@
                 <div id="sec-pricing" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
                     <form id="form-pricing" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
-                            <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fa-solid fa-tags text-cyan-400"></i> Package Pricing Settings</h3>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-tags text-cyan-400"></i> Package Pricing Settings
+                            </h3>
                         </div>
                         <div class="grid sm:grid-cols-3 gap-6">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Basic Service Price</label>
-                                <input type="text" id="adm-price1" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-price1" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Chemical Wash Price</label>
-                                <input type="text" id="adm-price2" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-price2" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Full Overhaul Price</label>
-                                <input type="text" id="adm-price3" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-price3" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
                         <div class="flex justify-end pt-4 border-t border-slate-800">
-                            <button type="submit" class="bg-cyan-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Save Pricing</button>
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">Save Pricing</button>
                         </div>
                     </form>
                 </div>
@@ -213,20 +244,22 @@
                 <div id="sec-contact" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
                     <form id="form-contact" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
-                            <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fa-solid fa-phone text-cyan-400"></i> Contact & Numbers</h3>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-phone text-cyan-400"></i> Contact & Numbers
+                            </h3>
                         </div>
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Phone Number</label>
-                                <input type="text" id="adm-phoneDisplay" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-phoneDisplay" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">WhatsApp Number</label>
-                                <input type="text" id="adm-waNumber" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-waNumber" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
                         <div class="flex justify-end pt-4 border-t border-slate-800">
-                            <button type="submit" class="bg-cyan-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Save Contact</button>
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">Save Contact</button>
                         </div>
                     </form>
                 </div>
@@ -235,20 +268,22 @@
                 <div id="sec-security" class="tab-content hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
                     <form id="form-security" class="space-y-6">
                         <div class="border-b border-slate-800 pb-4">
-                            <h3 class="text-lg font-bold text-white flex items-center gap-2"><i class="fa-solid fa-shield-halved text-cyan-400"></i> Admin Credentials</h3>
+                            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-shield-halved text-cyan-400"></i> Admin Credentials
+                            </h3>
                         </div>
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">New Username</label>
-                                <input type="text" id="adm-newUsername" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="text" id="adm-newUsername" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">New Password</label>
-                                <input type="password" id="adm-newPassword" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
+                                <input type="password" id="adm-newPassword" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
                         <div class="flex justify-end pt-4 border-t border-slate-800">
-                            <button type="submit" class="bg-cyan-500 text-slate-950 font-bold px-6 py-3 rounded-xl">Save Security</button>
+                            <button type="submit" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold px-6 py-3 rounded-xl transition-all">Save Security</button>
                         </div>
                     </form>
                 </div>
@@ -257,60 +292,34 @@
         </div>
     </div>
 
-    <!-- Service Add/Edit Modal (with Sinhala/Tamil support) -->
+    <!-- Service Add/Edit Modal -->
     <div id="service-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-slate-900 border border-slate-800 w-full max-w-xl rounded-3xl p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-            <h3 id="modal-title" class="text-xl font-bold text-white mb-6">Add New Service</h3>
+        <div class="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl relative">
+            <h3 id="modal-title" class="text-xl font-bold text-white mb-6">නව සේවාවක් එක් කරන්න</h3>
             <form id="service-form" class="space-y-4">
                 <input type="hidden" id="srv-edit-id">
-                
-                <div class="grid sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Title (English - Default)</label>
-                        <input type="text" id="srv-title" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Badge</label>
-                        <input type="text" id="srv-badge" required value="Service" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
-                    </div>
-                </div>
-
-                <div class="grid sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-semibold text-cyan-400 mb-2 uppercase">Title (Sinhala)</label>
-                        <input type="text" id="srv-title-si" placeholder="සිංහල නම" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-semibold text-cyan-400 mb-2 uppercase">Title (Tamil)</label>
-                        <input type="text" id="srv-title-ta" placeholder="தமிழ் பெயர்" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white">
-                    </div>
-                </div>
-
                 <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Image (URL / Upload & Crop)</label>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">සේවාවේ නම (Title)</label>
+                    <input type="text" id="srv-title" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Badge</label>
+                    <input type="text" id="srv-badge" required value="Service" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">පින්තූරය (URL හෝ Upload කර Crop කරන්න)</label>
                     <div class="flex gap-2">
-                        <input type="text" id="srv-img" required placeholder="Image URL" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-xs">
-                        <button type="button" onclick="openImageCropper('srv-img')" class="bg-slate-800 text-cyan-400 px-4 py-2 rounded-xl text-xs shrink-0 border border-slate-700"><i class="fa-solid fa-upload mr-1"></i> Upload & Crop</button>
+                        <input type="text" id="srv-img" required placeholder="Image URL" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-xs focus:outline-none focus:border-cyan-500">
+                        <button type="button" onclick="openImageCropper('srv-img')" class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-4 py-2 rounded-xl text-xs border border-slate-700 shrink-0"><i class="fa-solid fa-upload mr-1"></i> Upload & Crop</button>
                     </div>
                 </div>
-
                 <div>
-                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Description (English)</label>
-                    <textarea id="srv-desc" rows="2" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-cyan-400 mb-2 uppercase">Description (Sinhala)</label>
-                    <textarea id="srv-desc-si" rows="2" placeholder="සිංහල විස්තරය" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white"></textarea>
-                </div>
-
-                <div>
-                    <label class="block text-xs font-semibold text-cyan-400 mb-2 uppercase">Description (Tamil)</label>
-                    <textarea id="srv-desc-ta" rows="2" placeholder="தமிழ் விளக்கம்" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white"></textarea>
+                    <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">විස්තරය (Description)</label>
+                    <textarea id="srv-desc" rows="3" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500"></textarea>
                 </div>
 
                 <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
-                    <button type="button" onclick="closeServiceModal()" class="bg-slate-800 text-slate-300 px-5 py-2.5 rounded-xl">Cancel</button>
+                    <button type="button" onclick="closeServiceModal()" class="bg-slate-800 text-slate-300 font-semibold px-5 py-2.5 rounded-xl">අවලංගු කරන්න</button>
                     <button type="submit" class="bg-cyan-500 text-slate-950 font-bold px-6 py-2.5 rounded-xl">Save Service</button>
                 </div>
             </form>
@@ -320,26 +329,28 @@
     <!-- Image Cropper Modal -->
     <div id="cropper-modal" class="hidden fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4">
         <div class="bg-slate-900 border border-slate-800 w-full max-w-2xl rounded-3xl p-6 shadow-2xl flex flex-col items-center">
-            <h3 class="text-lg font-bold text-white mb-4">Crop & Fit Image</h3>
+            <h3 class="text-lg font-bold text-white mb-4">පින්තූරය Crop සහ Fit කරන්න</h3>
             
             <div class="w-full max-h-[50vh] overflow-hidden bg-slate-950 rounded-xl border border-slate-800 mb-4 flex items-center justify-center">
                 <img id="cropper-image" src="" alt="Source" class="max-w-full block">
             </div>
 
             <div class="flex flex-wrap items-center justify-between gap-3 w-full mb-6">
-                <label class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-4 py-2 rounded-xl text-xs cursor-pointer border border-slate-700">
-                    <i class="fa-solid fa-folder-open mr-1"></i> Choose Another Image
-                    <input type="file" id="cropper-file-input" accept="image/*" class="hidden" onchange="handleFileSelected(event)">
-                </label>
                 <div class="flex items-center gap-2">
-                    <button type="button" onclick="cropperObj.rotate(90)" class="bg-slate-800 text-slate-300 px-3 py-2 rounded-xl text-xs"><i class="fa-solid fa-rotate-right"></i></button>
-                    <button type="button" onclick="cropperObj.reset()" class="bg-slate-800 text-slate-300 px-3 py-2 rounded-xl text-xs">Reset</button>
+                    <label class="bg-slate-800 hover:bg-slate-700 text-cyan-400 px-4 py-2 rounded-xl text-xs cursor-pointer border border-slate-700">
+                        <i class="fa-solid fa-folder-open mr-1"></i> වෙනත් පින්තූරයක් තෝරන්න
+                        <input type="file" id="cropper-file-input" accept="image/*" class="hidden" onchange="handleFileSelected(event)">
+                    </label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button type="button" onclick="cropperObj.rotate(90)" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-xl text-xs"><i class="fa-solid fa-rotate-right"></i></button>
+                    <button type="button" onclick="cropperObj.reset()" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-2 rounded-xl text-xs">Reset</button>
                 </div>
             </div>
 
             <div class="flex items-center justify-end gap-3 w-full pt-4 border-t border-slate-800">
-                <button type="button" onclick="closeCropperModal()" class="bg-slate-800 text-slate-300 px-5 py-2.5 rounded-xl text-xs font-semibold">Cancel</button>
-                <button type="button" onclick="saveCroppedImage()" class="bg-cyan-500 text-slate-950 px-6 py-2.5 rounded-xl text-xs font-bold">Use This Image</button>
+                <button type="button" onclick="closeCropperModal()" class="bg-slate-800 text-slate-300 px-5 py-2.5 rounded-xl text-xs font-semibold">අවලංගු කරන්න</button>
+                <button type="button" onclick="saveCroppedImage()" class="bg-cyan-500 text-slate-950 px-6 py-2.5 rounded-xl text-xs font-bold shadow-lg shadow-cyan-500/20">මෙම පින්තූරය භාවිතා කරන්න</button>
             </div>
         </div>
     </div>
