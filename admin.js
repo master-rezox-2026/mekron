@@ -14,7 +14,9 @@ async function populateAdminForm() {
         if (data) {
             document.getElementById('adm-brandName').value = data.brand_name || '';
             document.getElementById('adm-brandTagline').value = data.brand_tagline || '';
+            document.getElementById('adm-logoType').value = data.logo_type || 'icon';
             document.getElementById('adm-logoIcon').value = data.logo_icon || '';
+            document.getElementById('adm-logoImgUrl').value = data.logo_img_url || '';
             document.getElementById('adm-topNotice').value = data.top_notice || '';
             document.getElementById('adm-phoneDisplay').value = data.phone_display || '';
             document.getElementById('adm-waNumber').value = data.wa_number || '';
@@ -69,7 +71,9 @@ document.getElementById('admin-form').addEventListener('submit', async (e) => {
     const updatedData = {
         brand_name: document.getElementById('adm-brandName').value,
         brand_tagline: document.getElementById('adm-brandTagline').value,
+        logo_type: document.getElementById('adm-logoType').value,
         logo_icon: document.getElementById('adm-logoIcon').value,
+        logo_img_url: document.getElementById('adm-logoImgUrl').value,
         top_notice: document.getElementById('adm-topNotice').value,
         phone_display: document.getElementById('adm-phoneDisplay').value,
         wa_number: document.getElementById('adm-waNumber').value,
@@ -103,7 +107,6 @@ document.getElementById('admin-form').addEventListener('submit', async (e) => {
         return;
     }
 
-    // Save admin credentials
     const newU = document.getElementById('adm-newUsername').value.trim();
     const newP = document.getElementById('adm-newPassword').value.trim();
     if (newU && newP) {

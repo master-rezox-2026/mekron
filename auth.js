@@ -15,7 +15,6 @@ if (loginForm) {
         e.preventDefault();
         const userInput = document.getElementById('login-username').value.trim();
         const passInput = document.getElementById('login-password').value.trim();
-        
         const creds = getAuthCredentials();
         const errorAlert = document.getElementById('error-alert');
 
@@ -31,7 +30,6 @@ if (loginForm) {
 
 function logoutAdmin() {
     sessionStorage.removeItem('mekron_admin_logged_in');
-    session.removeItem('mekron_admin_user');
     window.location.href = 'login.html';
 }
 

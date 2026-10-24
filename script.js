@@ -17,8 +17,15 @@ async function loadSiteConfigFromSupabase() {
             if (document.getElementById('footer-brand')) document.getElementById('footer-brand').innerText = data.brand_name + " " + data.brand_tagline;
             if (document.getElementById('footer-copy-brand')) document.getElementById('footer-copy-brand').innerText = data.brand_name + " " + data.brand_tagline;
             
-            if (document.getElementById('logo-icon')) {
-                document.getElementById('logo-icon').className = `${data.logo_icon} text-lg text-cyan-400 animate-pulse`;
+            // Render Logo Type (Icon vs Image)
+            const logoWrapper = document.getElementById('logo-wrapper');
+            if (logoWrapper) {
+                if (data.logo_type === 'image' && data.logo_img_url) {
+                    logoWrapper.innerHTML = `<img src="${data.logo_img_url}" alt="Logo" class="w-full h-full object-cover rounded-[10px]">`;
+                } else {
+                    const iconClass = data.logo_icon || 'fa-solid fa-snowflake';
+                    logoWrapper.innerHTML = `<i class="${iconClass} text-lg text-cyan-400 animate-pulse"></i>`;
+                }
             }
 
             if (document.getElementById('top-bar-notice')) {

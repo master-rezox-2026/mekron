@@ -25,8 +25,8 @@
                     <i class="fa-solid fa-sliders text-lg"></i>
                 </div>
                 <div>
-                    <h1 class="font-poppins font-bold text-white text-base leading-tight">Website Control Center (Supabase Realtime)</h1>
-                    <p class="text-[11px] text-cyan-400">Protected Admin Portal</p>
+                    <h1 class="font-poppins font-bold text-white text-base leading-tight">Website Control Center</h1>
+                    <p class="text-[11px] text-cyan-400">Supabase Connected Admin Portal</p>
                 </div>
             </div>
             <div class="flex items-center gap-3">
@@ -76,18 +76,18 @@
                 <!-- Notification Alert -->
                 <div id="save-alert" class="hidden bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 p-4 rounded-xl text-sm flex items-center gap-3">
                     <i class="fa-solid fa-circle-check text-lg"></i>
-                    <span id="alert-text">වෙනස්කම් Supabase Database එකෙහි සාර්ථකව Save විය! හැමෝගෙම සයිට් එකේ දැන් වෙනස් වී ඇත.</span>
+                    <span>වෙනස්කම් Supabase Database එකෙහි සාර්ථකව Save විය!</span>
                 </div>
 
                 <form id="admin-form" class="space-y-6">
                     
-                    <!-- TAB 1: Branding Settings -->
+                    <!-- TAB 1: Branding & Logo Settings -->
                     <div id="sec-branding" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
                         <div class="border-b border-slate-800 pb-4">
                             <h3 class="text-lg font-bold text-white flex items-center gap-2">
-                                <i class="fa-solid fa-signature text-cyan-400"></i> Branding, Logo & Header Settings
+                                <i class="fa-solid fa-signature text-cyan-400"></i> Brand, Logo & Header Settings
                             </h3>
-                            <p class="text-xs text-slate-400 mt-1">වෙබ් අඩවියේ නම, Logo එක සහ Header හි තොරතුරු වෙනස් කරන්න.</p>
+                            <p class="text-xs text-slate-400 mt-1">වෙබ් අඩවියේ නම සහ Logo එක (Icon හෝ Image එකක් ලෙස) වෙනස් කරන්න.</p>
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-6">
@@ -103,12 +103,26 @@
 
                         <div class="grid sm:grid-cols-2 gap-6">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">FontAwesome Logo Icon Class</label>
-                                <input type="text" id="adm-logoIcon" placeholder="fa-solid fa-snowflake" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Type (Icon හෝ Image)</label>
+                                <select id="adm-logoType" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                                    <option value="icon">FontAwesome Icon එකක් පාවිච්චි කරන්න</option>
+                                    <option value="image">පින්තූරයක් (Logo Image URL) පාවිච්චි කරන්න</option>
+                                </select>
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Top Bar Announcement Text</label>
                                 <input type="text" id="adm-topNotice" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Icon Class (Icon තෝරා ඇත්නම්)</label>
+                                <input type="text" id="adm-logoIcon" placeholder="fa-solid fa-snowflake" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2 uppercase">Logo Image URL (Image තෝරා ඇත්නම්)</label>
+                                <input type="text" id="adm-logoImgUrl" placeholder="https://example.com/logo.png" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500">
                             </div>
                         </div>
                     </div>
