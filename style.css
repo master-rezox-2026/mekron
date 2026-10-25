@@ -1,4 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
-body { font-family: 'Noto Sans Sinhala', 'Poppins', sans-serif; }
-.font-poppins { font-family: 'Poppins', sans-serif; }
-html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', 'Noto Sans Sinhala', sans-serif;
+    background-color: #f8fafc;
+}
+
+/* Glassmorphism Styling */
+.glass-header {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Card Hover Animations */
+.product-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 25px -5px rgba(225, 29, 72, 0.1), 0 8px 10px -6px rgba(225, 29, 72, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+    background: #e11d48;
+    border-radius: 4px;
+}
+
+/* Badge Pulse Animation */
+@keyframes subtle-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+.pulse-badge {
+    animation: subtle-pulse 2s infinite;
+}
